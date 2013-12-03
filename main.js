@@ -7,6 +7,7 @@ define(function (require, exports, module) {
         ExtensionUtils = brackets.getModule('utils/ExtensionUtils'),
         NodeConnection = brackets.getModule('utils/NodeConnection'),
         FileSystem = brackets.getModule('filesystem/FileSystem'),
+        ProjectManager  = brackets.getModule('project/ProjectManager'),
         PreferencesManager = brackets.getModule('preferences/PreferencesManager'),
         AppInit = brackets.getModule('utils/AppInit'),
         COMMAND_ID = 'outofme.bracketsLivereload.enable',
@@ -83,12 +84,14 @@ define(function (require, exports, module) {
         // Load stylesheet.
         ExtensionUtils.loadStyleSheet(module, 'livereload.css');
 
-//        FileSystem.on('change', function (e) {
-//            
-////            console.log('file changed', e.target);
-//        });
+        // Listening to file system changes
+        FileSystem.on('change', function (e, changedThing) {
+            if (changedThing && isRunning) {
+                lrDomain.trigger([changedThing.name]);
+                
+            }
+        });
 
-        
         // Add icon to toolbar.
         $lrIcon = $('<a href="#" title="Livereload" id="brackets-livereload-icon"></a>');
         $lrIcon.click(function () {
