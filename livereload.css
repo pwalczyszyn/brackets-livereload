@@ -1,8 +1,10 @@
 /*--- TOOLBAR ---*/
-#brackets-livereload-icon {
-	background-image: url( 'images/livereload-icon.svg' );
+ #brackets-livereload-icon {
+    background-image: url('images/livereload-icon.svg');
 }
-
 #brackets-livereload-icon.active {
-	background-position: 0 -24px;
+    background-position: 0 -24px;
+}
+#brackets-livereload-icon.error {
+    background-position: 0 -48px;
 }
