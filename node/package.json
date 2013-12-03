@@ -1,0 +1,9 @@
+{
+  "name": "livereload",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "tiny-lr": "0.0.5"
+  }
+}
