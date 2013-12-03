@@ -88,7 +88,6 @@ define(function (require, exports, module) {
         FileSystem.on('change', function (e, changedThing) {
             if (changedThing && isRunning) {
                 lrDomain.trigger([changedThing.name]);
-                
             }
         });
 
