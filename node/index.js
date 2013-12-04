@@ -6,7 +6,7 @@ var tinylr = require('tiny-lr'),
 function startServer(port, callback) {
 
     if (server) {
-        return callback(new Error('Livereload server is already running.'));
+        return callback(new Error('LiveReload server is already running.'));
     }
 
     server = tinylr();

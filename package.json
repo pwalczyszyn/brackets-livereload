@@ -1,0 +1,12 @@
+{
+    "name": "brackets-livereload",
+    "title": "LiveReload",
+    "description": "Brackets extension for LiveReload, it can be used with Chrome, Safari, and Firefox LiveReload plugins.",
+    "homepage": "https://github.com/pwalczyszyn/brackets-livereload",
+    "version": "1.0.0",
+    "author": "Piotr Walczyszyn <piotr@outof.me> (http://outof.me)",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.34.0"
+    }
+}

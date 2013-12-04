@@ -53,7 +53,7 @@ define(function (require, exports, module) {
         $lrIcon
             .removeClass('error')
             .addClass('active')
-            .attr('title', 'Livereload: active');
+            .attr('title', 'LiveReload: active');
 
         // Listening to file system changes
         FileSystem.on('change', changeHandler);
@@ -64,12 +64,12 @@ define(function (require, exports, module) {
         if (!err) {
             $lrIcon
                 .removeClass('active error')
-                .attr('title', 'Livereload');
+                .attr('title', 'LiveReload');
         } else {
             $lrIcon
                 .removeClass('active')
                 .addClass('error')
-                .attr('title', 'Livereload: ' + (err.code === 'EADDRINUSE' ? 'Port ' + port + ' is already in use.' : err.message));
+                .attr('title', 'LiveReload: ' + (err.code === 'EADDRINUSE' ? 'Port ' + port + ' is already in use.' : err.message));
         }
 
         // Listening to file system changes
@@ -86,7 +86,7 @@ define(function (require, exports, module) {
                 nodeConnection = null;
 
                 $lrIcon.addClass('error');
-                $lrIcon.attr('title', 'Livereload is having a problem to connect to node process: ' + err);
+                $lrIcon.attr('title', 'LiveReload is having a problem to connect to node process: ' + err);
 
                 console.log('[brackets-livereload] failed to load domain:', err);
 
@@ -113,7 +113,7 @@ define(function (require, exports, module) {
         ExtensionUtils.loadStyleSheet(module, 'livereload.css');
 
         // Add icon to toolbar.
-        $lrIcon = $('<a href="#" title="Livereload" id="brackets-livereload-icon"></a>');
+        $lrIcon = $('<a href="#" title="LiveReload" id="brackets-livereload-icon"></a>');
         $lrIcon.click(function () {
             CommandManager.execute(COMMAND_ID);
         }).appendTo('#main-toolbar .buttons');
