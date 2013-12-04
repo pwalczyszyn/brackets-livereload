@@ -1,37 +1,40 @@
 /* jshint node:true */
 
 var tinylr = require('tiny-lr'),
-    server;
+    server = null;
 
-function toggleTinyLR(start, port) {
-    console.log('toggling tiny-lr, start', start, 'port', port);
+function startServer(port, callback) {
 
-    if (start) {
-        if (server) {
-            server.close();
-            server = null;
-        }
-
-        server = tinylr();
-        server.listen(port, function (err) {
-            if (err) {
-                return err;
-            }
-
-            console.log('Live reload server started on port: ' + port);
-
-            return;
-        });
-
-    } else {
-        server.close();
-        server = null;
-
-        console.log('Stopped livereload server at port: ' + port);
-
-        return;
+    if (server) {
+        return callback(new Error('Livereload server is already running.'));
     }
 
+    server = tinylr();
+    server.server.on('error', function (err) {
+        stopServer();
+        callback(err);
+    });
+    server.listen(port, function (err) {
+        if (err) {
+            stopServer();
+            return callback(err);
+        }
+        callback();
+    });
+}
+
+function stopServer(callback) {
+    server.server.removeAllListeners('error');
+    server.close();
+    server = null;
+
+    if (callback) {
+        callback();
+    }
+}
+
+function isServerRunning() {
+    return server !== null;
 }
 
 function trigger(files) {
@@ -53,8 +56,18 @@ exports.init = function (DomainManager) {
     }
     DomainManager.registerCommand(
         'livereload',
-        'toggleTinyLR',
-        toggleTinyLR,
+        'startServer',
+        startServer,
+        true);
+    DomainManager.registerCommand(
+        'livereload',
+        'stopServer',
+        stopServer,
+        true);
+    DomainManager.registerCommand(
+        'livereload',
+        'isServerRunning',
+        isServerRunning,
         false);
     DomainManager.registerCommand(
         'livereload',
