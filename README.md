@@ -1,7 +1,7 @@
 brackets-livereload
 ===================
 
-LiveReload extension for Brackets. It can be used with Chrome, Safari, and Firefox plugins for LiveReload.
+[LiveReload](http://livereload.com/) extension for [Brackets](http://brackets.io). It can be used with Chrome, Safari, and Firefox plugins for LiveReload.
 
 ### Usage
 
