@@ -7,6 +7,7 @@ define(function (require, exports, module) {
         ExtensionUtils = brackets.getModule('utils/ExtensionUtils'),
         NodeConnection = brackets.getModule('utils/NodeConnection'),
         FileSystem = brackets.getModule('filesystem/FileSystem'),
+        ProjectManager = brackets.getModule('project/ProjectManager'),
         COMMAND_ID = 'outofme.bracketsLivereload.enable',
         AppInit = brackets.getModule('utils/AppInit'),
         isRunning = false,
@@ -44,8 +45,10 @@ define(function (require, exports, module) {
     }
 
     function changeHandler(err, changedThing) {
-        if (changedThing && isRunning) {
-            lrDomain.trigger([changedThing.name]);
+        if (ProjectManager.getProjectRoot()._path === changedThing._path.substr(0, ProjectManager.getProjectRoot()._path.length)) {
+            if (changedThing && isRunning) {
+                lrDomain.trigger([changedThing.name]);
+            }
         }
     }
 
