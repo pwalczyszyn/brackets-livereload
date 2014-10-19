@@ -3,7 +3,7 @@
     "title": "LiveReload",
     "description": "Brackets extension for LiveReload, it can be used with Chrome, Safari, and Firefox LiveReload plugins.",
     "homepage": "https://github.com/pwalczyszyn/brackets-livereload",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "Piotr Walczyszyn <piotr@outof.me> (http://outof.me)",
     "license": "MIT",
     "engines": {
